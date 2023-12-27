@@ -7,7 +7,6 @@ Data source: https://ourworldindata.org/covid-deaths
 Skills used: Data Selection from Tables, Joins, Aggregate Functions, Data Types Conversion, CTEs, Temp Tables, Windows Functions, Creating Views. 
 
 SQL queries are written to answer the following questions: 
-
 -- Total Cases vs Total Deaths?  
 -- Chances of dying if you contract COVID-19 in your country?  
 -- Total Cases vs Population?  
