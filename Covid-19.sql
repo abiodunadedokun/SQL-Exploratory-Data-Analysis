@@ -1,12 +1,9 @@
-
+-- Preliminary Data Selection
 
 Select *
 From PortfolioProject..CovidDeaths
 Where continent is not null 
 order by 3,4
-
-
--- Select Data from Database
 
 Select Location, date, total_cases, new_cases, total_deaths, population
 From PortfolioProject..CovidDeaths
@@ -51,11 +48,9 @@ Where continent is not null
 Group by Location
 order by TotalDeathCount desc
 
-
-
 -- Insights by Continents
 
--- Contintents with the highest death count per population
+-- Continents with the highest death count per population
 
 Select continent, MAX(cast(Total_deaths as int)) as TotalDeathCount
 From PortfolioProject..CovidDeaths
@@ -63,8 +58,6 @@ From PortfolioProject..CovidDeaths
 Where continent is not null 
 Group by continent
 order by TotalDeathCount desc
-
-
 
 -- World data
 
@@ -78,7 +71,7 @@ order by 1,2
 
 
 -- Total Population vs Vaccinations
--- Percentage of Population that has recieved at least one Covid Vaccine
+-- Percentage of the Population that has received at least one COVID vaccine
 
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
@@ -91,7 +84,7 @@ where dea.continent is not null
 order by 2,3
 
 
--- Using CTE to perform Calculation on Partition By in previous query
+-- Using CTE to perform Calculation on Partition By in the previous query
 
 With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
 as
@@ -108,7 +101,6 @@ where dea.continent is not null
 )
 Select *, (RollingPeopleVaccinated/Population)*100
 From PopvsVac
-
 
 
 -- Using Temp Table to perform Calculation on Partition By in previous query
